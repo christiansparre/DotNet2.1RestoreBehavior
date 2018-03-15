@@ -6,7 +6,7 @@ FROM microsoft/aspnetcore-build:2.1.300-preview1 AS build
 WORKDIR /src
 COPY SomeApp.sln ./
 COPY SomeApp/SomeApp.csproj SomeApp/
-RUN dotnet restore -nowarn:msb3202,nu1503
+RUN dotnet restore -nowarn:msb3202,nu1503 /p:RestoreUseSkipNonexistentTargets="false"
 COPY . .
 WORKDIR /src/SomeApp
 RUN dotnet build -c Release -o /app
